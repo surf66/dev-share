@@ -1,0 +1,3 @@
+{
+  "ignore": ["client/*", "web/*", "node_modules"]
+}
