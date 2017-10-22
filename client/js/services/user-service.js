@@ -24,5 +24,14 @@ export default {
         Authorization: authToken
       }
     });
+  },
+
+  signUp(userData) {
+    return $.ajax({
+      type: 'POST',
+      url: `http://localhost:3001/api/Users/`,
+      contentType: 'application/json',
+      data: JSON.stringify(userData)
+    });
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
+import { Link, Switch, Route } from 'react-router-dom';
 
 function mapStateToProps(state) {
   return {
@@ -12,7 +13,7 @@ class UserComponent extends React.Component {
   render() {
     var userData = this.props.userData || {};
     var loggedOutState = (
-      <div>Login</div>
+      <Link to='/login'>Login</Link>
     );
 
     var loggedInState = (

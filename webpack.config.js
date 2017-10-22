@@ -27,7 +27,12 @@ var config = {
     new CopyWebpackPlugin([
       { from: 'client/index.html', to: '../index.html' }
     ])
-  ]
+  ],
+  devServer: {
+    historyApiFallback: {
+      index: 'index.html'
+    }
+  }
 };
 
 module.exports = [config];
