@@ -1,8 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link, Switch, Route } from 'react-router-dom';
 import UserService from '../services/user-service.js';
 
-export default class AppContainer extends React.Component {
+function mapStateToProps(state) {
+  return {
+    userData: state.userData,
+  }
+}
+
+class SignUpForm extends React.Component {
   constructor() {
     super();
 
@@ -12,6 +19,12 @@ export default class AppContainer extends React.Component {
 
     this._handleInputUpdate = this._handleInputUpdate.bind(this);
     this._handleSubmission = this._handleSubmission.bind(this);
+  }
+
+  componentWillMount() {
+    if (this.props.userData.isAuthenticated) {
+      this.props.history.push("/");
+    }
   }
 
   render() {
@@ -40,3 +53,5 @@ export default class AppContainer extends React.Component {
       })
   }
 }
+
+export default connect(mapStateToProps, null)(SignUpForm);

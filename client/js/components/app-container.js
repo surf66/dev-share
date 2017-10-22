@@ -3,7 +3,7 @@ import User from './user-component';
 import LoginForm from './login-form';
 import SignUp from './sign-up';
 import { connect } from 'react-redux';
-import { Link, Switch, Route } from 'react-router-dom';
+import { Link, Switch, Route, Redirect } from 'react-router-dom';
 
 function mapStateToProps(state) {
   return {
@@ -12,16 +12,18 @@ function mapStateToProps(state) {
 }
 
 class AppContainer extends React.Component {
-  constructor() {
+  constructor(props, context) {
     super();
   }
 
   render() {
     var isAuthenticated = this.props.userData && this.props.userData.isAuthenticated;
+    var isUnauthenticatedRoute = document.location.pathname == '/login' || document.location.pathname == '/sign-up';
     return (
       <div>
         <User />
         {isAuthenticated && <div>YOUR LOGGED IN!!!</div>}
+        {!isAuthenticated && !isUnauthenticatedRoute && <Redirect to="/login" push />}
         <Switch>
           <Route path="/login" component={LoginForm}/>
           <Route path="/sign-up" component={SignUp}/>

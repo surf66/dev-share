@@ -5,6 +5,12 @@ import UserService from '../services/user-service.js';
 import { setUserData } from '../actions/index';
 import { Link, Switch, Route } from 'react-router-dom';
 
+function mapStateToProps(state) {
+  return {
+    userData: state.userData,
+  }
+}
+
 function mapDispatchToProps(dispatch) {
   return ({
     setUserData: bindActionCreators(setUserData, dispatch)
@@ -19,6 +25,12 @@ class LoginForm extends React.Component {
     this._handlePasswordUpdate = this._handlePasswordUpdate.bind(this);
     this._handleSubmission = this._handleSubmission.bind(this);
     this.setUserData = props.setUserData.bind(this);
+  }
+
+  componentWillMount() {
+    if (this.props.userData && this.props.userData.isAuthenticated) {
+      this.props.history.push("/");
+    }
   }
 
   render() {
@@ -55,4 +67,4 @@ class LoginForm extends React.Component {
   }
 }
 
-export default connect(undefined, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
