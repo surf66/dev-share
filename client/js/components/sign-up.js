@@ -14,7 +14,8 @@ class SignUpForm extends React.Component {
     super();
 
     this.state = {
-      formValues: {}
+      formValues: {},
+      errors: {}
     };
 
     this._handleInputUpdate = this._handleInputUpdate.bind(this);
@@ -29,12 +30,21 @@ class SignUpForm extends React.Component {
 
   render() {
     return (
-      <div className="col-3-sub-medium col-centered sign-up-form text-center">
+      <div className="col-7-sub-medium col-3-medium col-centered sign-up-form text-center">
         <h4>Sign Up</h4>
-        <input type="text" name="username" placeholder="username" onChange={this._handleInputUpdate} className="text-center"/>
-        <input type="email" name="email" placeholder="email" onChange={this._handleInputUpdate} className="text-center"/>
-        <input type="password" name="password" placeholder="password" onChange={this._handleInputUpdate} className="text-center"/>
-        <button className="float-right" onClick={this._handleSubmission}>Submit</button>
+        <div className={`${this.state.errors.username ? 'has-error' : ''}`}>
+          <input type="text" name="username" placeholder="username" onChange={this._handleInputUpdate} className="text-center"/>
+          <span className="error-message text-light-red">{this.state.errors.username && this.state.errors.username[0]}</span>
+        </div>
+        <div className={`${this.state.errors.email ? 'has-error' : ''}`}>
+          <input type="email" name="email" placeholder="email" onChange={this._handleInputUpdate} className="text-center"/>
+          <span className="error-message text-light-red">{this.state.errors.email && this.state.errors.email[0]}</span>
+        </div>
+        <div className={`${this.state.errors.password ? 'has-error' : ''}`}>
+          <input type="password" name="password" placeholder="password" onChange={this._handleInputUpdate} className="text-center"/>
+          <span className="error-message text-light-red">{this.state.errors.password && this.state.errors.password[0]}</span>
+        </div>
+        <button onClick={this._handleSubmission}>Submit</button>
         <Link to='/login'>Already a member?</Link>
       </div>
     );
@@ -49,8 +59,15 @@ class SignUpForm extends React.Component {
   _handleSubmission() {
     UserService.signUp(this.state.formValues)
       .then((result) => {
-
+        this.props.history.push("/login");
       })
+      .fail((result) => {
+        var error = JSON.parse(result.responseText).error;
+        if (error.code == "INVALID_PASSWORD") {
+          return this.setState({errors: {password: [error.message]}});
+        }
+        this.setState({errors: error.details.messages});
+      });
   }
 }
 

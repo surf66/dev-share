@@ -35,11 +35,11 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div className="col-3-sub-medium col-centered login-form text-center">
+      <div className="col-5-sub-medium col-3-medium col-centered login-form text-center">
         <h4>Login</h4>
         <input type="text" name="username" placeholder="username" onChange={this._handleUsernameUpdate} className="text-center"/>
         <input type="password" name="password" placeholder="password" onChange={this._handlePasswordUpdate} className="text-center"/>
-        <button className="float-right" onClick={this._handleSubmission}>Submit</button>
+        <button onClick={this._handleSubmission}>Submit</button>
         <Link to='/sign-up'>Sign up</Link>
       </div>
     );
