@@ -22,7 +22,7 @@ class SignUpForm extends React.Component {
   }
 
   componentWillMount() {
-    if (this.props.userData.isAuthenticated) {
+    if (this.props.userData && this.props.userData.isAuthenticated) {
       this.props.history.push("/");
     }
   }

@@ -1,5 +1,13 @@
+@import "profile";
+
 .user-profile {
-  padding-right: 1rem;
+  margin-right: 1rem;
+
+  &::after {
+    content: '';
+    clear: both;
+    display: table;
+  }
 }
 
 .login-form, .sign-up-form {
@@ -11,4 +19,9 @@
   button {
     width: 100%;
   }
+}
+
+.material-icons {
+  vertical-align: middle;
+  margin-right: 0.5rem;
 }
