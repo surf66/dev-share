@@ -1,4 +1,4 @@
-const setUserData = (state = null, action) => {
+const setUserData = (state = {}, action) => {
   switch (action.type) {
     case 'SET_USER_DATA':
       var data = Object.assign({}, state, action.value);

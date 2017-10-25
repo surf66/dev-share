@@ -9,7 +9,7 @@ export default {
 
     return $.ajax({
       type: 'POST',
-      url: `http://localhost:3001/api/Users/login`,
+      url: `http://localhost:3001/api/users/login`,
       data: JSON.stringify(data),
       contentType: 'application/json'
     });
@@ -18,7 +18,7 @@ export default {
   getProfileData(id, authToken) {
     return $.ajax({
       type: 'GET',
-      url: `http://localhost:3001/api/Users/${id}`,
+      url: `http://localhost:3001/api/users/${id}`,
       contentType: 'application/json',
       headers: {
         Authorization: authToken
@@ -29,7 +29,16 @@ export default {
   signUp(userData) {
     return $.ajax({
       type: 'POST',
-      url: `http://localhost:3001/api/Users/`,
+      url: `http://localhost:3001/api/users/`,
+      contentType: 'application/json',
+      data: JSON.stringify(userData)
+    });
+  },
+
+  updateUser(id, userData) {
+    return $.ajax({
+      type: 'PATCH',
+      url: `http://localhost:3001/api/users/${id}`,
       contentType: 'application/json',
       data: JSON.stringify(userData)
     });

@@ -33,6 +33,11 @@
       &:hover {
         background: lighten(#33383a, 10%);
       }
+
+      a {
+        color: #fff;
+        display: block;
+      }
     }
 
     &::before {

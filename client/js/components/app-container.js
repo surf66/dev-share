@@ -1,6 +1,7 @@
 import React from 'react';
 import User from './user-component';
 import LoginForm from './login-form';
+import Account from './account';
 import SignUp from './sign-up';
 import { connect } from 'react-redux';
 import { Link, Switch, Route, Redirect } from 'react-router-dom';
@@ -19,14 +20,19 @@ class AppContainer extends React.Component {
   render() {
     var isAuthenticated = this.props.userData && this.props.userData.isAuthenticated;
     var isUnauthenticatedRoute = document.location.pathname == '/login' || document.location.pathname == '/sign-up';
+    console.log('>>>>');
+    console.log(isAuthenticated);
+    console.log(isUnauthenticatedRoute);
+    console.log(!isAuthenticated && !isUnauthenticatedRoute);
+    console.log('>>>>');
     return (
       <div>
         <User />
-        {isAuthenticated && <div>YOUR LOGGED IN!!!</div>}
         {!isAuthenticated && !isUnauthenticatedRoute && <Redirect to="/login" push />}
         <Switch>
           <Route path="/login" component={LoginForm}/>
           <Route path="/sign-up" component={SignUp}/>
+          <Route path="/account" component={Account}/>
         </Switch>
       </div>
     );

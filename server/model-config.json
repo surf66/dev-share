@@ -15,7 +15,7 @@
   },
   "User": {
     "dataSource": "db",
-    "public": true
+    "public": false
   },
   "AccessToken": {
     "dataSource": "db",
@@ -37,6 +37,10 @@
     "public": false
   },
   "video": {
+    "dataSource": "db",
+    "public": true
+  },
+  "user": {
     "dataSource": "db",
     "public": true
   }

@@ -42,7 +42,7 @@ class UserComponent extends React.Component {
         </div>
         <div className={`drop-down background-charcoal-black ${this.state.isVisible ? 'is-visible' : ''}`}>
           <ul>
-            <li><i className="material-icons">face</i> Account</li>
+            <li><Link to='/account' onClick={this._handleProfileMenuToggle}><i className="material-icons">face</i> Account</Link></li>
             <li><i className="material-icons">chat</i> Support</li>
             <li><i className="material-icons">mail_outline</i> Contact</li>
             <li onClick={this._handleLogOut}><i className="material-icons">exit_to_app</i> log out</li>
@@ -65,7 +65,7 @@ class UserComponent extends React.Component {
 
   _handleLogOut() {
     this.clearUserData();
-    this.setState({isVisible: false})
+    this.setState({isVisible: false});
   }
 }
 
