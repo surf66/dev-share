@@ -6,7 +6,7 @@ const setUserData = (state = {}, action) => {
       return data;
     case 'CLEAR_USER_DATA':
       delete localStorage.userData;
-      return null;
+      return {};
     default:
       return state;
   }

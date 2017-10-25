@@ -6,7 +6,6 @@ import { setUserData } from '../actions/index';
 import { Link, Switch, Route } from 'react-router-dom';
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     userData: state.userData,
   }
@@ -31,7 +30,6 @@ class Account extends React.Component {
   }
 
   render() {
-    console.log(this.props.userData);
     return (
       <div className="col-8-sub-medium col-centered text-center account-area">
         <h4>Account</h4>
@@ -47,13 +45,13 @@ class Account extends React.Component {
           <div className="col-6-sub-medium">
             <div className="field-container">
               <label htmlFor="first-name">First Name</label>
-              <input type="text" id="first-name" name="first-name" defaultValue={this.props.userData['last-name']} onChange={this._handleInputChange}/>
+              <input type="text" id="first-name" name="first-name" defaultValue={this.props.userData['first-name']} onChange={this._handleInputChange}/>
             </div>
           </div>
           <div className="col-6-sub-medium">
             <div className="field-container">
               <label htmlFor="last-name">Last Name</label>
-              <input type="text" id="last-name" name="last-name" defaultValue={this.props.userData['first-name']} onChange={this._handleInputChange}/>
+              <input type="text" id="last-name" name="last-name" defaultValue={this.props.userData['last-name']} onChange={this._handleInputChange}/>
             </div>
           </div>
         </div>
@@ -79,7 +77,6 @@ class Account extends React.Component {
       })
       .fail((result) => {
         var error = JSON.parse(result.responseText).error;
-        console.log(error);
         this.setState({errors: error.details.messages});
       });
   }

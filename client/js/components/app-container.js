@@ -20,11 +20,6 @@ class AppContainer extends React.Component {
   render() {
     var isAuthenticated = this.props.userData && this.props.userData.isAuthenticated;
     var isUnauthenticatedRoute = document.location.pathname == '/login' || document.location.pathname == '/sign-up';
-    console.log('>>>>');
-    console.log(isAuthenticated);
-    console.log(isUnauthenticatedRoute);
-    console.log(!isAuthenticated && !isUnauthenticatedRoute);
-    console.log('>>>>');
     return (
       <div>
         <User />
