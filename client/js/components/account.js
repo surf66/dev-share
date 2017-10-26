@@ -33,6 +33,7 @@ class Account extends React.Component {
     return (
       <div className="col-8-sub-medium col-centered text-center account-area">
         <h4>Account</h4>
+        <img className="profile-pic" src={`/images/${this.props.userData.id}/avatar.png`} />
         <div className="row">
           <div className="col-6-sub-medium">
             <div className="field-container">
