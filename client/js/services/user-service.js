@@ -35,12 +35,15 @@ export default {
     });
   },
 
-  updateUser(id, userData) {
+  updateUser(id, userData, authToken) {
     return $.ajax({
       type: 'PATCH',
       url: `http://localhost:3001/api/users/${id}`,
       contentType: 'application/json',
-      data: JSON.stringify(userData)
+      data: JSON.stringify(userData),
+      headers: {
+        Authorization: authToken
+      }
     });
   }
 }

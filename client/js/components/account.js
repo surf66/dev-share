@@ -72,12 +72,12 @@ class Account extends React.Component {
   }
 
   _handleSubmission() {
-    UserService.updateUser(this.props.userData.id, this.state.formValues)
+    UserService.updateUser(this.props.userData.userId, this.state.formValues, this.props.userData.id)
       .then((result) => {
         this.props.setUserData(result);
       })
       .fail((result) => {
-        var error = JSON.parse(result.responseText).error;
+        var error = result.responseJSON.error;
         this.setState({errors: error.details.messages});
       });
   }

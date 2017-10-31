@@ -61,6 +61,7 @@ class LoginForm extends React.Component {
       })
       .then((result) => {
         result.isAuthenticated = true;
+        delete result.id;
         this.setUserData(result);
         this.props.history.push("/");
       })
